@@ -32,16 +32,25 @@ public class List<T extends Comparable<T>> {
     }
 
     public void remove(T data) {
+        // There's no point in searching for a null.
         if (data != null)
+            // Remove the data if possible; rebuild the list.
+            // Attach the rebuilt list to the head.
             head = remove(head, data);
     }
 
     private ListNode remove(ListNode current, T data) {
         if (current == null)
+            // We're at the end of the list and it wasn't found.
+            // Rebuild the list as it was.
             return null;
         if (current.data.compareTo(data) == 0)
+            // We have our match; delete it
             return current.next;
+        // No match was found; try with the next node in the list.
+        // Attach the newly formed list to current.
         current.next = remove(current.next, data);
+        // Insert current back into the list.
         return current;
     }
 
