@@ -27,8 +27,9 @@ public class List<T extends Comparable<T>> {
     }
 
     public void remove(T data) {
-        if (data != null)
-            head = remove(head, data);
+        if (data == null)
+            throw new IllegalArgumentException();
+        head = remove(head, data);
     }
 
     private ListNode remove(ListNode current, T data) {
